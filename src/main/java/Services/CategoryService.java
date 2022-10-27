@@ -25,30 +25,36 @@ public class CategoryService {
     }
 
     public Category save(Category category){
-        if(category.getId() == null){
-            return categoryRepository.save(category);
-        }else{
-            Optional<Category> categoryEncontrado = getCategory(category.getId());
-            if(categoryEncontrado.isEmpty()){
+        if(validarCampos(category)) {
+            if (category.getId() == null) {
                 return categoryRepository.save(category);
-            }else{
-                return category;
+            } else {
+                Optional<Category> categoryEncontrado = getCategory(category.getId());
+                if (categoryEncontrado.isEmpty()) {
+                    return categoryRepository.save(category);
+                } else {
+                    return category;
+                }
             }
         }
+        return  category;
     }
 
     public Category update(Category category){
-        if(category.getId() != null){
-            Optional<Category> categoryEncontrado = getCategory(category.getId());
-            if(!categoryEncontrado.isEmpty()){
-                if(category.getDescription() != null){
-                   categoryEncontrado.get().setDescription(category.getDescription());
+        if(validarCampos(category)){
+            if (category.getId() != null) {
+                Optional<Category> categoryEncontrado = getCategory(category.getId());
+                if (!categoryEncontrado.isEmpty()) {
+                    if (category.getDescription() != null) {
+                        categoryEncontrado.get().setDescription(category.getDescription());
+                    }
+                    if (category.getName() != null) {
+                        categoryEncontrado.get().setName(category.getName());
+                    }
+                    return categoryRepository.save(categoryEncontrado.get());
                 }
-                if(category.getName()!=null){
-                    categoryEncontrado.get().setName(category.getName());
-                }
-                return categoryRepository.save(categoryEncontrado.get());
             }
+            return category;
         }
         return category;
     }
@@ -62,4 +68,7 @@ public class CategoryService {
         return respuesta;
     }
 
+    public boolean validarCampos(Category category){
+        return(category.getName().length() <=45 && category.getDescription().length() <= 250);
+    }
 }
