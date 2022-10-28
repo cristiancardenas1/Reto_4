@@ -50,8 +50,12 @@ public class BoxService {
                     if (box.getCapacity() != null) {
                         boxEncontrado.get().setCapacity(box.getCapacity());
                     }
-
-
+                    if (box.getDescription() != null) {
+                        boxEncontrado.get().setDescription(box.getDescription());
+                    }
+                    if (box.getCategory() != null) {
+                        boxEncontrado.get().setCategory(box.getCategory());
+                    }
                     return boxRepository.save(boxEncontrado.get());
                 }
             }

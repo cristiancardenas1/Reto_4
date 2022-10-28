@@ -43,7 +43,7 @@ public class CategoryService {
     public Category update(Category category){
         if(validarCampos(category)){
             if (category.getId() != null) {
-                Optional<Category> categoryEncontrado = getCategory(category.getId());
+                Optional<Category> categoryEncontrado = categoryRepository.getCategory(category.getId());
                 if (!categoryEncontrado.isEmpty()) {
                     if (category.getDescription() != null) {
                         categoryEncontrado.get().setDescription(category.getDescription());

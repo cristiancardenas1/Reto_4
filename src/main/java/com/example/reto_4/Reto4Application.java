@@ -1,4 +1,4 @@
-package com.example.reto_3;
+package com.example.reto_4;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("Model")
 @EnableJpaRepositories("Repository")
 
-public class Reto3Application {
+public class Reto4Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Reto3Application.class, args);
+        SpringApplication.run(Reto4Application.class, args);
     }
 
 }

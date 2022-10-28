@@ -2,18 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>RETO_2</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="misFunciones.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <title>Box_4.0</title>
 </head>
-
 <body>
-<h1>PALCOS!   <button onclick="traerInformacion()">DETALLE</button></h1>
-<div id="resultado"></div>
+<h1>Bienvenido Box 4.0</h1>
 
+    <div class="container unauthenticated">
+        para iniciar sesion haz click <a href="/oauth2/authorization/github">aqui</a>
+    </div>
 
-
+    <div class="container authenticated" style="display: none">
+        has sido autenticado: <span id=usuario"></span>
+        <button onclick="location.href='homePage.html';">Continuar</button>
+    </div>
 </body>
+<script type="text/javascript">
+    $.get("/user", function (data){
+        $("#usuario").html(data,name);
+        $(".unauthenticated").hide();
+        $(".authenticated").show();
+    });
 
+</script>
 </html>

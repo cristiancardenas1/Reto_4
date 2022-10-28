@@ -40,8 +40,8 @@ public class ClientService {
     public Client update(Client client){
         if(validarCampos(client)) {
             if (client.getIdClient() != null) {
-                Optional<Client> clientEncontrado = getClient(client.getIdClient());
-                if (clientEncontrado.isEmpty()) {
+                Optional<Client> clientEncontrado = clientRepository.getClient(client.getIdClient());
+                if (!clientEncontrado.isEmpty()) {
                     if (client.getName() != null) {
                         clientEncontrado.get().setName(client.getName());
                     }

@@ -30,4 +30,16 @@ public class BoxController {
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Box save(@RequestBody Box box) {return boxService.save(box);}
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Box update(@RequestBody Box box){
+        return boxService.update(box);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return boxService.delete(id);
+    }
 }

@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Category;
 import Model.Reservation;
 import Model.Score;
 import Repository.Crud.ScoreRepository;
@@ -31,6 +32,18 @@ public class ScoreController {
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Score save(@RequestBody Score score) {return scoreService.save(score);}
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Score update(@RequestBody Score score){
+        return scoreService.update(score);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return scoreService.delete(id);
+    }
 
 }
 
